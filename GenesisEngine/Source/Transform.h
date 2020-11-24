@@ -20,7 +20,7 @@ public:
 	float4x4 GetGlobalTransform();
 
 	void UpdateLocalTransform();
-	void UpdateGlobalTransform(float4x4 parentGlobalTransform);
+	void UpdateGlobalTransform(float4x4 GlobalTransform);
 
 	void Reset();
 
@@ -41,6 +41,7 @@ public:
 private:
 	float4x4 localTransform;
 	float4x4 globalTransform;
+	float4x4 GlobalTransform;
 
 	float3 position;
 	float3 scale;

@@ -14,10 +14,13 @@ Transform::Transform() : Component()
 
 	localTransform = float4x4::FromTRS(position, rotation, scale);
 	globalTransform = localTransform;
+	GlobalTransform = float4x4::identity;
 }
 
 Transform::Transform(float3 g_position, Quat g_rotation, float3 g_scale) : Component()
 {
+	type = ComponentType::TRANSFORM;
+
 	position = g_position;
 	rotation = g_rotation;
 	eulerRotation = rotation.ToEulerXYZ();
@@ -26,6 +29,7 @@ Transform::Transform(float3 g_position, Quat g_rotation, float3 g_scale) : Compo
 
 	localTransform = float4x4::FromTRS(g_position, g_rotation, g_scale);
 	globalTransform = localTransform;
+	GlobalTransform = float4x4::identity;
 }
 
 Transform::~Transform() {}
@@ -45,6 +49,7 @@ void Transform::OnEditor()
 
 			SetPosition(position);
 			UpdateLocalTransform();
+			gameObject->UpdateChildrenTransforms();			
 		}
 
 		float rotation4f[4] = { eulerRotation.x, eulerRotation.y, eulerRotation.z, 1.0f };
@@ -56,6 +61,7 @@ void Transform::OnEditor()
 
 			SetRotation(eulerRotation.x, eulerRotation.y, eulerRotation.z);
 			UpdateLocalTransform();
+			gameObject->UpdateChildrenTransforms();
 		}
 
 		float scale4f[4] = { scale.x, scale.y, scale.z, 1.0f };
@@ -67,12 +73,14 @@ void Transform::OnEditor()
 
 			SetScale(scale);
 			UpdateLocalTransform();
+			gameObject->UpdateChildrenTransforms();
 		};
 
 		float scale_multiplier = scale.x;
-		if (ImGui::DragFloat("Scale Multiplier", &scale_multiplier, 0.01f, 0.0f, 10.0f)) 
+		if (ImGui::DragFloat("Scale Multiplier", &scale_multiplier, 0.01f, 0.0f, 10.0f))
 		{
 			SetProportionalScale(scale_multiplier);
+			gameObject->UpdateChildrenTransforms();
 		}
 
 		ImGui::Spacing();
@@ -103,22 +111,15 @@ void Transform::UpdateLocalTransform()
 {
 	localTransform = float4x4::FromTRS(position, rotation, scale);
 	globalTransform = localTransform;
-
-	/*if (gameObject->GetParent() == nullptr)
-		globalTransform = localTransform;
-	else
-	{
-		float4x4 parentGlobal = gameObject->GetParent()->GetTransform()->GetGlobalTransform();
-		UpdateGlobalTransform(parentGlobal);
-	}*/
-
+	eulerRotation = rotation.ToEulerXYZ();
+	eulerRotation *= RADTODEG;
 }
 
-void Transform::UpdateGlobalTransform(float4x4 parentGlobalTransform)
+void Transform::UpdateGlobalTransform(float4x4 GlobalTransform)
 {
-	localTransform = float4x4::FromTRS(position, rotation, scale);
-	//globalTransform = localTransform;
-	globalTransform = parentGlobalTransform * localTransform;
+	UpdateLocalTransform();
+	GlobalTransform = GlobalTransform;
+	globalTransform = GlobalTransform * localTransform;
 }
 
 void Transform::Reset()
@@ -128,8 +129,9 @@ void Transform::Reset()
 	scale = float3::one;
 	eulerRotation = float3::zero;
 
-	localTransform = float4x4::FromTRS(position, rotation, scale);
-	globalTransform = localTransform;
+	UpdateLocalTransform();
+	gameObject->UpdateChildrenTransforms();
+
 }
 
 void Transform::SetPosition(float x, float y, float z)
@@ -138,14 +140,13 @@ void Transform::SetPosition(float x, float y, float z)
 	position.y = y;
 	position.z = z;
 
-	//UpdateLocalTransform();
+	UpdateLocalTransform();
 }
 
 void Transform::SetPosition(float3 new_position)
 {
 	position = new_position;
-
-	//UpdateLocalTransform();
+	UpdateLocalTransform();
 }
 
 float3 Transform::GetPosition()
@@ -153,12 +154,13 @@ float3 Transform::GetPosition()
 	return position;
 }
 
+
 //Set rotation from Euler angles
 void Transform::SetRotation(float x, float y, float z)
 {
 	eulerRotation = float3(x, y, z);
 	rotation = Quat::FromEulerXYZ(x * DEGTORAD, y * DEGTORAD, z * DEGTORAD);
-	//UpdateLocalTransform();
+	UpdateLocalTransform();
 }
 
 void Transform::SetRotation(Quat new_rotation)
@@ -166,7 +168,7 @@ void Transform::SetRotation(Quat new_rotation)
 	rotation = new_rotation;
 	eulerRotation = rotation.ToEulerXYZ() * RADTODEG;
 
-	//UpdateLocalTransform();
+	UpdateLocalTransform();
 }
 
 void Transform::SetRotation(float x, float y, float z, float w)
@@ -176,7 +178,7 @@ void Transform::SetRotation(float x, float y, float z, float w)
 	rotation.z = z;
 	rotation.w = w;
 
-	//UpdateLocalTransform();
+	UpdateLocalTransform();
 }
 
 Quat Transform::GetRotation()
@@ -190,14 +192,14 @@ void Transform::SetScale(float x, float y, float z)
 	scale.y = y;
 	scale.z = z;
 
-	//UpdateLocalTransform();
+	UpdateLocalTransform();
 }
 
 void Transform::SetScale(float3 new_scale)
 {
 	scale = new_scale;
 
-	//UpdateLocalTransform();
+	UpdateLocalTransform();
 }
 
 void Transform::SetProportionalScale(float multiplier)
