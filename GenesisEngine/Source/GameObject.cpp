@@ -51,7 +51,6 @@ void GameObject::Update()
 		{
 			children[i]->Update();
 		}
-
 	}
 }
 
@@ -63,6 +62,8 @@ void GameObject::OnEditor()
 	//static char buf[64] = "Name";
 	//strcpy(buf, name.c_str());
 	//if (ImGui::InputText("", &buf[0], IM_ARRAYSIZE(buf))){}
+
+	ImGui::Checkbox("Bounding Box", &App->renderer3D->bounding_box);
 
 	for (size_t i = 0; i < components.size(); i++)
 	{

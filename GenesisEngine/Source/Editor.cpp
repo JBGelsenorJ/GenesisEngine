@@ -429,16 +429,16 @@ bool Editor::CreateMainMenuBar() {
 		if (ImGui::BeginMenu("Help"))
 		{
 			if (ImGui::MenuItem("Documentation"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine/wiki", NULL, NULL, SW_SHOWNORMAL);
+				ShellExecuteA(NULL, "open", "https://github.com/JBGelsenorJ/GenesisEngine/wiki", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("Download latest"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine/releases", NULL, NULL, SW_SHOWNORMAL);
+				ShellExecuteA(NULL, "open", "https://github.com/JBGelsenorJ/GenesisEngine/pulls", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("Report a bug"))
 				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine/issues", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("View on GitHub"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine", NULL, NULL, SW_SHOWNORMAL);
+				ShellExecuteA(NULL, "open", "https://github.com/JBGelsenorJ/GenesisEngine", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("About"))
 				show_about_window = true;
@@ -774,6 +774,12 @@ void Editor::ShowAboutWindow()
 		ImGui::SameLine();
 		if (ImGui::SmallButton("Marc Pages Francesch"))
 			ShellExecuteA(NULL, "open", "https://github.com/marcpages2020", NULL, NULL, SW_SHOWNORMAL);
+		ImGui::SameLine();
+		if (ImGui::SmallButton("Silvino Medina Cardona"))
+			ShellExecuteA(NULL, "open", "https://github.com/silvino00", NULL, NULL, SW_SHOWNORMAL);
+		ImGui::SameLine();
+		if (ImGui::SmallButton("Javier D. Belda Gonzalez"))
+			ShellExecuteA(NULL, "open", "https://github.com/JBGelsenorJ", NULL, NULL, SW_SHOWNORMAL);
 
 
 		ImGui::Spacing();

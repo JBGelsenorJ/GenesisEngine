@@ -510,35 +510,38 @@ void ModuleRenderer3D::DrawBoundingBox()
 
 	bbox.GetCornerPoints(bbox_corners);
 
-	glVertex3fv((GLfloat*)&bbox_corners[1]);
-	glVertex3fv((GLfloat*)&bbox_corners[5]);
-	glVertex3fv((GLfloat*)&bbox_corners[7]);
-	glVertex3fv((GLfloat*)&bbox_corners[3]);
+	if (App->renderer3D->bounding_box) {
 
-	glVertex3fv((GLfloat*)&bbox_corners[4]);
-	glVertex3fv((GLfloat*)&bbox_corners[0]);
-	glVertex3fv((GLfloat*)&bbox_corners[2]);
-	glVertex3fv((GLfloat*)&bbox_corners[6]);
+		glVertex3fv((GLfloat*)&bbox_corners[1]);
+		glVertex3fv((GLfloat*)&bbox_corners[5]);
+		glVertex3fv((GLfloat*)&bbox_corners[7]);
+		glVertex3fv((GLfloat*)&bbox_corners[3]);
 
-	glVertex3fv((GLfloat*)&bbox_corners[5]);
-	glVertex3fv((GLfloat*)&bbox_corners[4]);
-	glVertex3fv((GLfloat*)&bbox_corners[6]);
-	glVertex3fv((GLfloat*)&bbox_corners[7]);
+		glVertex3fv((GLfloat*)&bbox_corners[4]);
+		glVertex3fv((GLfloat*)&bbox_corners[0]);
+		glVertex3fv((GLfloat*)&bbox_corners[2]);
+		glVertex3fv((GLfloat*)&bbox_corners[6]);
 
-	glVertex3fv((GLfloat*)&bbox_corners[0]);
-	glVertex3fv((GLfloat*)&bbox_corners[1]);
-	glVertex3fv((GLfloat*)&bbox_corners[3]);
-	glVertex3fv((GLfloat*)&bbox_corners[2]);
+		glVertex3fv((GLfloat*)&bbox_corners[5]);
+		glVertex3fv((GLfloat*)&bbox_corners[4]);
+		glVertex3fv((GLfloat*)&bbox_corners[6]);
+		glVertex3fv((GLfloat*)&bbox_corners[7]);
 
-	glVertex3fv((GLfloat*)&bbox_corners[1]);
-	glVertex3fv((GLfloat*)&bbox_corners[3]);
-	glVertex3fv((GLfloat*)&bbox_corners[0]);
-	glVertex3fv((GLfloat*)&bbox_corners[2]);
+		glVertex3fv((GLfloat*)&bbox_corners[0]);
+		glVertex3fv((GLfloat*)&bbox_corners[1]);
+		glVertex3fv((GLfloat*)&bbox_corners[3]);
+		glVertex3fv((GLfloat*)&bbox_corners[2]);
 
-	glVertex3fv((GLfloat*)&bbox_corners[5]);
-	glVertex3fv((GLfloat*)&bbox_corners[7]);
-	glVertex3fv((GLfloat*)&bbox_corners[4]);
-	glVertex3fv((GLfloat*)&bbox_corners[6]);
+		glVertex3fv((GLfloat*)&bbox_corners[1]);
+		glVertex3fv((GLfloat*)&bbox_corners[3]);
+		glVertex3fv((GLfloat*)&bbox_corners[0]);
+		glVertex3fv((GLfloat*)&bbox_corners[2]);
 
+		glVertex3fv((GLfloat*)&bbox_corners[5]);
+		glVertex3fv((GLfloat*)&bbox_corners[7]);
+		glVertex3fv((GLfloat*)&bbox_corners[4]);
+		glVertex3fv((GLfloat*)&bbox_corners[6]);
+	}
+	
 	glEnd();
 }

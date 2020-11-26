@@ -13,6 +13,7 @@ typedef unsigned char GLubyte;
 typedef void* SDL_GLContext;
 class GnMesh;
 class GnMeshCollection;
+class GameObject;
 
 enum DisplayMode
 {
@@ -74,6 +75,7 @@ public:
 
 	AABB bbox;
 	float3 bbox_corners[8];
+	bool bounding_box;
 
 private:
 	bool debug;
