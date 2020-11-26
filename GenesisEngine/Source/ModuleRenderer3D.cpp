@@ -502,3 +502,43 @@ void ModuleRenderer3D::DrawDirectModeCube()
 void ModuleRenderer3D::BeginDebugDraw() {}
 
 void ModuleRenderer3D::EndDebugDraw() {}
+
+void ModuleRenderer3D::DrawBoundingBox()
+{
+	glBegin(GL_LINES);
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	bbox.GetCornerPoints(bbox_corners);
+
+	glVertex3fv((GLfloat*)&bbox_corners[1]);
+	glVertex3fv((GLfloat*)&bbox_corners[5]);
+	glVertex3fv((GLfloat*)&bbox_corners[7]);
+	glVertex3fv((GLfloat*)&bbox_corners[3]);
+
+	glVertex3fv((GLfloat*)&bbox_corners[4]);
+	glVertex3fv((GLfloat*)&bbox_corners[0]);
+	glVertex3fv((GLfloat*)&bbox_corners[2]);
+	glVertex3fv((GLfloat*)&bbox_corners[6]);
+
+	glVertex3fv((GLfloat*)&bbox_corners[5]);
+	glVertex3fv((GLfloat*)&bbox_corners[4]);
+	glVertex3fv((GLfloat*)&bbox_corners[6]);
+	glVertex3fv((GLfloat*)&bbox_corners[7]);
+
+	glVertex3fv((GLfloat*)&bbox_corners[0]);
+	glVertex3fv((GLfloat*)&bbox_corners[1]);
+	glVertex3fv((GLfloat*)&bbox_corners[3]);
+	glVertex3fv((GLfloat*)&bbox_corners[2]);
+
+	glVertex3fv((GLfloat*)&bbox_corners[1]);
+	glVertex3fv((GLfloat*)&bbox_corners[3]);
+	glVertex3fv((GLfloat*)&bbox_corners[0]);
+	glVertex3fv((GLfloat*)&bbox_corners[2]);
+
+	glVertex3fv((GLfloat*)&bbox_corners[5]);
+	glVertex3fv((GLfloat*)&bbox_corners[7]);
+	glVertex3fv((GLfloat*)&bbox_corners[4]);
+	glVertex3fv((GLfloat*)&bbox_corners[6]);
+
+	glEnd();
+}

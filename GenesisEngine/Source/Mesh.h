@@ -3,6 +3,7 @@
 #include "Component.h"
 #include <vector>;
 #include "Material.h"
+#include "MathGeoLib/include/MathGeoLib.h"
 
 typedef float GLfloat;
 typedef unsigned short GLushort;
@@ -27,6 +28,9 @@ public:
 	void DrawVertexNormals();
 	void DrawFaceNormals();
 
+	AABB GetAABB();
+	void CreateAABB();
+
 public:
 	uint vertices_buffer = -1;
 	int vertices_amount = -1;
@@ -46,6 +50,8 @@ public:
 	float* colors;
 
 	const char* name;
+
+	AABB aabb;
 
 private:
 	bool draw_vertex_normals;

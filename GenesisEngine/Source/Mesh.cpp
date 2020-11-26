@@ -158,7 +158,7 @@ void GnMesh::Render()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indices_buffer);
 
 	glPushMatrix();
-	glMultMatrixf((float*)&gameObject->GetTransform()->GetGlobalTransform());
+	glMultMatrixf((float*)&gameObject->GetTransform()->GetGlobalTransform().Transposed());
 
 	glDrawElements(GL_TRIANGLES, indices_amount, GL_UNSIGNED_INT, NULL);
 
@@ -259,6 +259,17 @@ void GnMesh::DrawFaceNormals()
 	glColor3f(1.0f, 1.0f, 1.0f);
 
 	glEnd();
+}
+
+AABB GnMesh::GetAABB()
+{
+	return aabb;
+}
+
+void GnMesh::CreateAABB()
+{
+	aabb.SetNegativeInfinity();
+	aabb.Enclose((float3*)vertices, vertices_amount);
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------

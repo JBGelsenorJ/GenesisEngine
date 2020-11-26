@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include "MathGeoLib/include/MathGeoLib.h"
+
 class Component;
 class Transform;
 class GnMesh;
@@ -26,7 +28,7 @@ public:
 	void SetName(const char* name);
 	void SetTransform(Transform transform);
 	Transform* GetTransform();
-
+	
 	GameObject* GetParent();
 	void SetParent(GameObject* parent);
 
@@ -37,8 +39,12 @@ public:
 	void DeleteChildren();
 	void UpdateChildrenTransforms();
 
+	void CreateOBB();
+
 public: 
 	bool to_delete;
+	OBB obb;
+	
 private:
 	bool enabled;
 	std::string name;

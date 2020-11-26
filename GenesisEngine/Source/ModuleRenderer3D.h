@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "glmath.h"
 #include "Light.h"
+#include "MathGeoLib/include/MathGeoLib.h"
 
 #define MAX_LIGHTS 8
 
@@ -44,6 +45,7 @@ public:
 	void SetVSYNC(bool enabled);
 
 	GLubyte GetCheckersImage();
+	void DrawBoundingBox();
 
 private:
 	void DrawDirectModeCube();
@@ -69,6 +71,9 @@ public:
 	bool draw_face_normals;
 
 	bool vsync;
+
+	AABB bbox;
+	float3 bbox_corners[8];
 
 private:
 	bool debug;

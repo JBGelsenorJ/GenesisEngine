@@ -1,9 +1,11 @@
+#include "Application.h"
 #include "GameObject.h"
 #include "Component.h"
 #include "Transform.h"
 #include "Mesh.h"
 #include "Material.h"
 #include "ImGui/imgui.h"
+#include "glew/include/glew.h"
 
 #include <vector>
 
@@ -41,12 +43,15 @@ void GameObject::Update()
 		{
 			if (components[i]->IsEnabled())
 				components[i]->Update();
+
+			CreateOBB();
 		}
 
 		for (size_t i = 0; i < children.size(); i++)
 		{
 			children[i]->Update();
 		}
+
 	}
 }
 
@@ -210,5 +215,20 @@ void GameObject::UpdateChildrenTransforms()
 	for (size_t i = 0; i < children.size(); i++)
 	{
 		children[i]->GetTransform()->UpdateGlobalTransform(transform->GetGlobalTransform());
+	}
+}
+
+void GameObject::CreateOBB()
+{
+	GnMesh* mesh = (GnMesh*)GetComponent(ComponentType::MESH);
+
+	if (mesh != nullptr) {
+		obb = mesh->GetAABB();
+		obb.Transform(transform->GetGlobalTransform());
+
+		App->renderer3D->bbox.SetNegativeInfinity();
+		App->renderer3D->bbox.Enclose(obb);
+
+		App->renderer3D->DrawBoundingBox();
 	}
 }
