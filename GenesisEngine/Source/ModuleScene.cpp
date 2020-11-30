@@ -29,6 +29,11 @@ bool ModuleScene::Start()
 	GameObject* house = MeshImporter::LoadFBX("Assets/Models/baker_house/BakerHouse.FBX");
 	AddGameObject(house);
 
+	GameObject* camera = new GameObject();
+	camera->AddComponent(ComponentType::CAMERA);
+	camera->SetName("Camera");
+	root->AddChild(camera);
+
 	//GameObject* rayman = MeshImporter::LoadFBX("Assets/Models/rayman/rayman.fbx");
 	//AddGameObject(rayman);
 

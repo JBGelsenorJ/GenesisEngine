@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Globals.h"
+#include "MathGeoLib/include/Geometry/Frustum.h"
 
 #include <string>
 
@@ -9,9 +10,14 @@ public:
 	Camera();
 	~Camera();
 
-	void Update() override;
-	void OnEditor() override;
+	virtual void Update() override;
+	virtual void OnEditor() override;
 
-private:
+	void DrawCameraBox();
+
+public:
+
+	Frustum frustum;
+	float3 camera_corners[8];
 
 };

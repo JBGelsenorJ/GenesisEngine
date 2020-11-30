@@ -26,6 +26,6 @@ public:
 	bool show_grid;
 	GameObject* selectedGameObject;
 
-private:
+public:
 	GameObject* root;
 };

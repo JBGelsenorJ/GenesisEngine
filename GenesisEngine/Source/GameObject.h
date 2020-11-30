@@ -8,6 +8,7 @@
 class Component;
 class Transform;
 class GnMesh;
+class Camera;
 enum class ComponentType;
 
 class GameObject {

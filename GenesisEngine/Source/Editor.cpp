@@ -5,6 +5,7 @@
 #include "ModuleScene.h"
 #include "GameObject.h"
 #include "FileSystem.h"
+#include "Camera.h"
 
 #include "Assimp/Assimp/include/version.h"
 
@@ -401,6 +402,13 @@ bool Editor::CreateMainMenuBar() {
 			else if (ImGui::MenuItem("Suzanne"))
 			{
 				App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/monkey.fbx"));
+			}
+			else if (ImGui::MenuItem("Camera"))
+			{
+				GameObject* camera = new GameObject();
+				camera->AddComponent(ComponentType::CAMERA);
+				camera->SetName("Camera");
+				App->scene->root->AddChild(camera);
 			}
 			ImGui::EndMenu();
 		}
