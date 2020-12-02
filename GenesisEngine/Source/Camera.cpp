@@ -1,5 +1,8 @@
 #include "Camera.h"
 #include "Globals.h"
+#include "Transform.h"
+#include "GameObject.h"
+#include "MathGeoLib/include/Geometry/Frustum.h"
 #include "MathGeoLib/include/MathGeoLib.h"
 #include "ImGui/imgui.h"
 
@@ -91,4 +94,19 @@ void Camera::DrawCameraBox()
 	glVertex3fv((GLfloat*)&camera_corners[7]);
 	
 	glEnd();
+}
+
+float* Camera::GetViewMatrix()
+{
+	float4x4 matrix;
+	matrix = frustum.ViewMatrix();
+	matrix.Transpose();
+
+	return (float*)matrix.v;
+}
+
+float Camera::GetAspectRatio() 
+{
+	return frustum.AspectRatio();
+
 }
