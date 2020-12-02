@@ -5,6 +5,7 @@
 #include "Mesh.h"
 #include "FileSystem.h"
 #include "GameObject.h"
+#include "Camera.h"
 
 ModuleScene::ModuleScene(bool start_enabled) : Module(start_enabled), show_grid(true), selectedGameObject(nullptr), root(nullptr) 
 {
@@ -33,6 +34,8 @@ bool ModuleScene::Start()
 	camera->AddComponent(ComponentType::CAMERA);
 	camera->SetName("Camera");
 	root->AddChild(camera);
+
+	Cam = (Camera*)camera->GetComponent(ComponentType::CAMERA);
 
 	//GameObject* rayman = MeshImporter::LoadFBX("Assets/Models/rayman/rayman.fbx");
 	//AddGameObject(rayman);

@@ -43,9 +43,17 @@ void GameObject::Update()
 		for (size_t i = 0; i < components.size(); i++)
 		{
 			if (components[i]->IsEnabled())
-				components[i]->Update();
-
-			CreateOBB();
+			{
+				if (components[i]->GetType() == ComponentType::MESH)
+				{
+					CreateOBB();
+				}
+				else
+				{
+					components[i]->Update();
+				}
+			}
+			
 		}
 
 		for (size_t i = 0; i < children.size(); i++)
@@ -238,5 +246,8 @@ void GameObject::CreateOBB()
 		App->renderer3D->bbox.Enclose(obb);
 
 		App->renderer3D->DrawBoundingBox();
+
+		if (App->scene->Cam->ContainsAaBox(mesh->aabb))
+			mesh->Update();
 	}
 }

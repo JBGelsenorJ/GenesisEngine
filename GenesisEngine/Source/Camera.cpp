@@ -105,8 +105,57 @@ float* Camera::GetViewMatrix()
 	return (float*)matrix.v;
 }
 
+float Camera::GetNearPlane()
+{
+	return frustum.nearPlaneDistance;
+}
+
+float Camera::GetFarPlane()
+{
+	return frustum.farPlaneDistance;
+}
+
+//Returns FOV in degrees
+float Camera::GetFOV()
+{
+	return frustum.verticalFov * RADTODEG;
+}
+
 float Camera::GetAspectRatio() 
 {
 	return frustum.AspectRatio();
 
+}
+
+bool Camera::ContainsAaBox(const AABB& refBox) const
+{
+	float3 vCorner[8];
+	int iTotalIn = 0;
+	refBox.GetCornerPoints(vCorner);
+
+	Plane* m_plane = new Plane[6]();
+	frustum.GetPlanes(m_plane);
+	   
+	for (int p = 0; p < 6; ++p) {
+
+		int iInCount = 8;
+		int iPtIn = 1;
+
+		for (int i = 0; i < 8; ++i) {
+			if (m_plane[p].IsOnPositiveSide(vCorner[i]) == true) {
+				iPtIn = 0;
+				--iInCount;
+			}
+		}
+
+		if (iInCount == 0)
+			return false;
+
+		iTotalIn += iPtIn;
+	}
+
+	if (iTotalIn == 6)
+		return true;
+
+	return true;
 }

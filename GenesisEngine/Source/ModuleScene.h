@@ -4,6 +4,7 @@
 
 class GameObject;
 class GnTexture;
+class Camera;
 
 class ModuleScene : public Module
 {
@@ -28,4 +29,5 @@ public:
 
 public:
 	GameObject* root;
+	Camera* Cam;
 };

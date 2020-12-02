@@ -17,8 +17,14 @@ public:
 
 	void DrawCameraBox();
 
+	float GetNearPlane();
+	float GetFarPlane();
+	float GetFOV();
 	float GetAspectRatio();
+
 	float* GetViewMatrix();
+
+	bool ContainsAaBox(const AABB& refBox) const;
 	
 public:
 
