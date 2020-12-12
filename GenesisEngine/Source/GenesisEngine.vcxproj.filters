@@ -170,6 +170,9 @@
     <ClCompile Include="Camera.cpp">
       <Filter>GameObjects &amp; Components</Filter>
     </ClCompile>
+    <ClCompile Include="TimeManagement.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -445,6 +448,9 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>GameObjects &amp; Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManagement.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

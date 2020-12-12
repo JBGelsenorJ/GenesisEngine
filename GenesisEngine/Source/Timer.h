@@ -13,8 +13,9 @@ public:
 
 	void Start();
 	void Stop();
+	void Resume();
 
-	Uint32 Read();
+	float Read();
 	float  ReadSec() const;
 
 private:

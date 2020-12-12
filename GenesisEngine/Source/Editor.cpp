@@ -6,6 +6,8 @@
 #include "GameObject.h"
 #include "FileSystem.h"
 #include "Camera.h"
+#include "ModuleWindow.h"
+#include "TimeManagement.h"
 
 #include "Assimp/Assimp/include/version.h"
 
@@ -27,6 +29,7 @@ Editor::Editor(bool start_enabled) : Module(start_enabled), aspect_ratio(AspectR
 	show_project_window = true;
 	show_console_window = true;
 	show_configuration_window = false;
+	show_time_management = true;
 
 	show_preferences_window = false;
 	show_about_window = false;
@@ -73,6 +76,8 @@ update_status Editor::Update(float dt)
 	ImGui::NewFrame();
 
 	ret = ShowDockSpace(open_dockspace);
+
+	TimeManagement();
 
 	return ret;
 }
@@ -764,6 +769,18 @@ void Editor::ShowConfigurationWindow()
 		if (ImGui::CollapsingHeader("File System")) {
 			ImGui::Checkbox("Normalize imported meshes", &FileSystem::normalize_scales);
 		}
+
+		if (ImGui::CollapsingHeader("TimeManagement"))
+		{
+			ImGui::Columns();
+			ImGui::Text("Frame Count:  %i frames", App->frame_count);
+			ImGui::Text("Game Time:  %f seconds", TimeManagement::GameTimer());
+			ImGui::Text("Time Scale:  %.3f ", TimeManagement::timeScale);
+			ImGui::Text("Delta Time:  %.3f", TimeManagement::dt);
+			ImGui::Separator();
+			ImGui::Text("Real Time Since Startup: %f seconds", TimeManagement::RealTimer());
+			ImGui::Text("Real Time dt:  %.3f", TimeManagement::dt);
+		}
 		
 	}
 	ImGui::End();
@@ -890,4 +907,42 @@ void Editor::ResizeSceneImage(ImVec2 window_size, AspectRatio g_aspect_ratio)
 
 	aspect_ratio = g_aspect_ratio;
 }
+
+void Editor::TimeManagement()
+{
+	ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove;
+
+	if (ImGui::Begin("Time Management", &show_time_management, flags))
+	{
+
+		if (ImGui::Button("Play")) {
+			App->StartGameTimer();
+		}
+
+		ImGui::SameLine();
+		
+		if (ImGui::Button("Stop")) { 
+			App->StopGameTimer(); 
+		}
+		
+		ImGui::SameLine();
+
+		if (TimeManagement::paused == false)
+		{
+			if (ImGui::Button("Pause")) { 
+				TimeManagement::Pause(); 
+			}
+		}
+		else
+		{
+			if (ImGui::Button("Resume")) { 
+				TimeManagement::Resume();
+			}
+		}
+		ImGui::SameLine();
+	}
+	ImGui::End();
+
+}
+
 

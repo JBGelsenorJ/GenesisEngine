@@ -25,12 +25,18 @@ void Timer::Stop()
 	stopped_at = SDL_GetTicks();
 }
 
+void Timer::Resume()
+{
+	running = true;
+	started_at = stopped_at;
+}
+
 // ---------------------------------------------
-Uint32 Timer::Read()
+float Timer::Read()
 {
 	if(running == true)
 	{
-		return SDL_GetTicks() - started_at;
+		return float(SDL_GetTicks() - started_at);
 	}
 	else
 	{

@@ -81,11 +81,19 @@ public:
 	HardwareSpecs GetHardware();
 	const char* GetEngineVersion();
 
+	void StartGameTimer();
+	void StopGameTimer();
+
 private:
 
 	void AddModule(Module* mod);
 	void PrepareUpdate();
 	void FinishUpdate();
+
+public:
+
+	bool game_started;
+	int frame_count;
 
 private:
 	int	   argc;

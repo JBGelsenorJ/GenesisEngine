@@ -2,6 +2,7 @@
 #include "glew/include/glew.h"
 #include "Globals.h"
 #include "FileSystem.h"
+#include "TimeManagement.h"
 
 #include "parson/parson.h"
 
@@ -27,6 +28,9 @@ Application::Application(int argc, char* args[]) : argc(argc), args(args)
 
 	int cap = 60;
 	capped_ms = 1000 / cap;
+
+	game_started = false;
+	frame_count = 0;
 
 	config_path = "jsons";
 }
@@ -73,6 +77,8 @@ bool Application::Init()
 		ret = modules_vector[i]->Start();
 	}
 
+	TimeManagement::realTimer.Start();
+
 	if(config_root)
 		json_value_free(config_root);
 
@@ -86,6 +92,9 @@ void Application::PrepareUpdate()
 	dt = (float)ms_timer.Read() / 1000;
 	fps = 1.0f / dt;
 	ms_timer.Start();
+
+	/*TimeManagement::realTimer.Step();
+	TimeManagement::gameTimer.Step();*/
 }
 
 // ---------------------------------------------
@@ -119,6 +128,8 @@ update_status Application::Update()
 	{
 		ret = modules_vector[i]->PostUpdate(dt);
 	}
+
+	frame_count++;
 
 	FinishUpdate();
 	return ret;
@@ -210,6 +221,21 @@ HardwareSpecs Application::GetHardware()
 const char* Application::GetEngineVersion()
 {
 	return version;
+}
+
+void Application::StartGameTimer()
+{
+	if (game_started == false)
+	{
+		game_started = true;
+		TimeManagement::gameTimer.Start();
+	}
+}
+
+void Application::StopGameTimer()
+{
+	game_started = false;
+	TimeManagement::gameTimer.Stop();
 }
 
 

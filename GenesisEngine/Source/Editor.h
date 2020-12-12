@@ -54,6 +54,7 @@ private:
 
 	void ResizeSceneImage(ImVec2 window_size, AspectRatio ratio);
 	void PreorderHierarchy(GameObject* gameObject);
+	void TimeManagement();
 
 private:
 	bool show_inspector_window;
@@ -62,6 +63,7 @@ private:
 	bool show_console_window;
 	bool show_scene_window;
 	bool show_configuration_window;
+	bool show_time_management;
 
 	//edit subwindows
 	bool show_preferences_window;
