@@ -10,7 +10,7 @@
 
 #include <vector>
 
-GameObject::GameObject() : enabled(true), name("Empty Game Object"), parent(nullptr), to_delete(false)
+GameObject::GameObject() : enabled(true), name("Empty GameObject"), parent(nullptr), to_delete(false)
 {
 	transform = (Transform*)AddComponent(ComponentType::TRANSFORM);
 }
