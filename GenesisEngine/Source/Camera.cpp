@@ -17,7 +17,7 @@ Camera::Camera() :Component(){
 	frustum.front = float3::unitZ;
 	frustum.up = float3::unitY;
 
-	frustum.pos = float3(0.0f, 0.0f, 0.0f);
+	frustum.pos = float3(0.0f, 0.0f, -5.0f);
 
 	frustum.farPlaneDistance = 50.0f;
 	frustum.nearPlaneDistance = 1.0f;

@@ -11,7 +11,7 @@ ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled)
 {
 	name = "camera";
 
-	Position = float3(10.0f, 10.0f, 10.0f);
+	Position = float3(20.0f, 20.0f, 20.0f);
 	Reference = float3(0.0f, 0.0f, 0.0f);
 
 	cam = new Camera();
