@@ -334,6 +334,17 @@ bool Editor::CreateMainMenuBar() {
 	{
 		if (ImGui::BeginMenu("File"))
 		{
+			if (ImGui::MenuItem("Save (F5)") || App->input->GetKey(SDL_SCANCODE_F5))
+			{
+
+			}
+			if (ImGui::MenuItem("Load (F4)") || App->input->GetKey(SDL_SCANCODE_F4))
+			{
+
+			}
+
+			ImGui::Separator();
+
 			if (ImGui::MenuItem("Exit"))
 			{
 				ret = false;
@@ -356,53 +367,57 @@ bool Editor::CreateMainMenuBar() {
 	
 		if (ImGui::BeginMenu("Game Object"))
 		{
-			if (ImGui::MenuItem("Cube"))
-			{
-				App->scene->AddGameObject(new GameObject(new GnCube()));
-			}
-			else if (ImGui::MenuItem("FBX: Cube"))
-			{
-				App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/cube.fbx"));
-			}
-			else if (ImGui::MenuItem("Cylinder"))
-			{
-				App->scene->AddGameObject(new GameObject(new GnCylinder()));
-			}
-			else if (ImGui::MenuItem("FBX: Cylinder"))
-			{
-				App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/cylinder.fbx"));
-			}
-			else if (ImGui::MenuItem("Sphere"))
-			{
-				App->scene->AddGameObject(new GameObject(new GnSphere()));
-			}
-			else if (ImGui::MenuItem("FBX: Sphere"))
-			{
-				App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/sphere.fbx"));
-			}
-			else if (ImGui::MenuItem("Pyramid"))
-			{
-				App->scene->AddGameObject(new GameObject(new GnPyramid()));
-			}
-			else if (ImGui::MenuItem("FBX: Pyramid"))
-			{
-				App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/pyramid.fbx"));
-			}
-			else if (ImGui::MenuItem("Plane"))
-			{
-				App->scene->AddGameObject(new GameObject(new GnPlane()));
-			}
-			else if (ImGui::MenuItem("FBX: Plane"))
-			{
-				App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/plane.fbx"));
-			}
-			else if (ImGui::MenuItem("Cone"))
-			{
-				App->scene->AddGameObject(new GameObject(new GnCone()));
-			}
-			else if (ImGui::MenuItem("FBX: Cone"))
-			{
-				App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/cone.fbx"));
+			if (ImGui::BeginMenu("Simple Objects")) {
+
+				if (ImGui::MenuItem("Cube"))
+				{
+					App->scene->AddGameObject(new GameObject(new GnCube()));
+				}
+				else if (ImGui::MenuItem("FBX: Cube"))
+				{
+					App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/cube.fbx"));
+				}
+				else if (ImGui::MenuItem("Cylinder"))
+				{
+					App->scene->AddGameObject(new GameObject(new GnCylinder()));
+				}
+				else if (ImGui::MenuItem("FBX: Cylinder"))
+				{
+					App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/cylinder.fbx"));
+				}
+				else if (ImGui::MenuItem("Sphere"))
+				{
+					App->scene->AddGameObject(new GameObject(new GnSphere()));
+				}
+				else if (ImGui::MenuItem("FBX: Sphere"))
+				{
+					App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/sphere.fbx"));
+				}
+				else if (ImGui::MenuItem("Pyramid"))
+				{
+					App->scene->AddGameObject(new GameObject(new GnPyramid()));
+				}
+				else if (ImGui::MenuItem("FBX: Pyramid"))
+				{
+					App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/pyramid.fbx"));
+				}
+				else if (ImGui::MenuItem("Plane"))
+				{
+					App->scene->AddGameObject(new GameObject(new GnPlane()));
+				}
+				else if (ImGui::MenuItem("FBX: Plane"))
+				{
+					App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/plane.fbx"));
+				}
+				else if (ImGui::MenuItem("Cone"))
+				{
+					App->scene->AddGameObject(new GameObject(new GnCone()));
+				}
+				else if (ImGui::MenuItem("FBX: Cone"))
+				{
+					App->scene->AddGameObject(MeshImporter::LoadFBX("Assets/Models/Primitives/cone.fbx"));
+				}
+				ImGui::EndMenu();
 			}
 			else if (ImGui::MenuItem("Suzanne"))
 			{
@@ -414,6 +429,10 @@ bool Editor::CreateMainMenuBar() {
 				camera->AddComponent(ComponentType::CAMERA);
 				camera->SetName("Camera");
 				App->scene->root->AddChild(camera);
+			}
+			if (ImGui::MenuItem("Empty GameObject"))
+			{
+				App->scene->AddGameObject(new GameObject());
 			}
 			ImGui::EndMenu();
 		}
