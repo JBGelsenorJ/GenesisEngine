@@ -173,6 +173,9 @@
     <ClCompile Include="Importer.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="TimeManagement.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -450,6 +453,9 @@
       <Filter>GameObjects &amp; Components</Filter>
     </ClInclude>
     <ClInclude Include="Importer.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManagement.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
