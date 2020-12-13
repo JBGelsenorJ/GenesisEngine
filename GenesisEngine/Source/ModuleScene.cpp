@@ -30,6 +30,9 @@ bool ModuleScene::Start()
 	GameObject* house = MeshImporter::LoadFBX("Assets/Models/baker_house/BakerHouse.FBX");
 	AddGameObject(house);
 
+	GameObject* street = MeshImporter::LoadFBX("Assets/Models/street/Street environment_V01.FBX");
+	AddGameObject(street);
+
 	GameObject* camera = new GameObject();
 	camera->AddComponent(ComponentType::CAMERA);
 	camera->SetName("Camera");
