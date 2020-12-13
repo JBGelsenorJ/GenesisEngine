@@ -25,8 +25,8 @@ namespace TextureImporter {
 	void Init();
 
 	void Import(const char* path);
-	uint64 Save(char** fileBuffer);
-	void Load(const char* fileBuffer, Material* ourTexture);
+	uint64 Save(char** Buffer);
+	void Load(const char* Buffer, GnTexture* ourTexture);
 }; 
 
 //namespace ModelImporter {

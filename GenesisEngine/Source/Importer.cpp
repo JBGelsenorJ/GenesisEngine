@@ -1,5 +1,5 @@
 #include "Importer.h"
-
+#include "FileSystem.h"
 #include "Timer.h"
 #include "SDL/include/SDL.h"
 #include <fstream>
@@ -189,15 +189,80 @@ void TextureImporter::Import(const char* path) {
 	Timer timer;
 	timer.Start();
 
-	
-	
+	char* buffer = nullptr;
+	uint size = FileSystem::Load(path, &buffer);
+
+	if (buffer != nullptr)
+	{
+		if (ilLoadL(IL_TYPE_UNKNOWN, buffer, size) == IL_FALSE)
+		{
+			if (ilLoadImage(path) == IL_FALSE)
+			{
+				LOG("Image succesfully imported");
+			}
+			else
+			{
+				LOG("Error importing the image");
+			}
+		}
+	}
+
+	LOG("Image imported in %d ms", timer.Read());
+
 }
 
-//uint64 TextureImporter::Save(char** fileBuffer) {
-//
-//}
+uint64 TextureImporter::Save(char** Buffer) {
 
-void TextureImporter::Load(const char* fileBuffer, Material* ourTexture) {
+	ILuint size;
+	ILubyte* data;
 
 
+	ilSetInteger(IL_DXTC_DATA_FORMAT, IL_DXT5);
+	size = ilSaveL(IL_DDS, nullptr, 0);
+
+	if (size > 0)
+	{
+		data = new ILubyte[size];
+		if (ilSaveL(IL_DDS, data, size) > 0)
+			*Buffer = (char*)data;
+	}
+	else
+	{
+		LOG("Error saving texture");
+	}
+	return size;
+}
+
+void TextureImporter::Load(const char* Buffer, GnTexture* ourTexture) {
+
+	bool ret = true;
+	Timer timer;
+	timer.Start();
+
+	ILuint id = 0;
+	ILenum error;
+
+	ilGenImages(1, &id);
+	ilBindImage(id);
+
+	ilEnable(IL_ORIGIN_SET);
+	ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
+
+	if (ilLoad(IL_DDS, Buffer) == IL_FALSE)
+	{
+		LOG("Error loading texture");
+
+		ilBindImage(0);
+		ilDeleteImages(1, &id);
+	}
+
+	ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
+
+	LOG("Texture loaded successfully in %d ms", timer.Read());
+
+	ourTexture->data = ilGetData();
+	ourTexture->id = (uint) id;
+	ourTexture->width = ilGetInteger(IL_IMAGE_WIDTH);
+	ourTexture->height = ilGetInteger(IL_IMAGE_HEIGHT);
+	ilBindImage(0);
 }

@@ -1,9 +1,10 @@
 # Genesis Engine
-  Genesis Engine is a game engine made in C and C++ for learning purposes. I'm Marc Pagès Francesch, 
-  a Game Development Student in CITM (Terrassa, Catalonia, Spain).
+  Genesis Engine is a game engine made in C and C++ for learning purposes. Originaly made by Marc Pagès Francesch (@marcpages2020). We (Javier D. Belda González (@JBGelsenorJ) & Silvino Medina Cardona (@silvino00) forked it to develop the 2º assignment for our videogame engines subject in the Development and Design of videogames degree, studied in the UPC.
 
-  Engine GitHub page: https://github.com/marcpages2020/GenesisEngine
-  My personal GitHub profile: https://github.com/marcpages2020
+  Javier D. Belda González Github: https://github.com/JBGelsenorJ
+  Silvino Medina Cardona Github: https://github.com/silvino00
+  Original Genesis Engine Repository: https://github.com/marcpages2020/GenesisEngine
+  Forked Repository: https://github.com/JBGelsenorJ/GenesisEngine
 
 ## Controls: 
  
@@ -46,14 +47,3 @@
    ones marked with FBX will be loaded from FBX files and will have texture coordinates. 
 
  - About: Get the pages where the project is held in GitHub and get more information about the engine.
-
- ## Additional functionality
- - The engine settings are loaded directly from a JSON file named config and located in GenesisEngine/Assets/Config. 
-   this settings include the modules values and which windows are opened on start. 
- - When and FBX is loaded the hierarchy of the objects is mantained and the name of the objects in the FBX will be assigned
-   to the new Game Object.  
- - Objects can be deleted selecting them and pressing SUPR.  
- - Local Transformations are applied to objects, to represent so the baker house will be rotated. Its childs can be rotated and scaled via inspector.
- - In configuration you can change if you want the size of the files to be normalized when imported. They are normalized if their size is (100, 100, 100).
- - Size can be changed in all axis at the same time using the scale multiplier under the scale transform in the inspector. 
- 

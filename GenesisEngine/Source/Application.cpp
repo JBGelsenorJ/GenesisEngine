@@ -237,5 +237,3 @@ void Application::StopGameTimer()
 	game_started = false;
 	TimeManagement::gameTimer.Stop();
 }
-
-
