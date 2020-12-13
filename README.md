@@ -25,11 +25,15 @@
 
  If for any reason the camera got stuck or didn't show anything on screen push R to reset it. 
 
-## Engine Functionality
+## Changelog
 
- FBX models can be imported dragging and dropping them directly onto the engine. Textures can also be  imported doing 
- the same and if an object is selected it will be automatically applied to it. 
- 
+ Camera, bounding boxes, time management done, transformations, and custom file format initiated.
+## Note for the teacher
+
+We are aware that there is a lack of work on this assignment, there was a mix of ignorance and bad time administration that we acknowledge and we'll carry with the possible bad mark. We'll ensure a much better work for the rest of the subject.
+
+
+
 ### Game Objects Inspector actions
  - Transform: Translate, Rotate and Scale the object. There is a scale multiplier which lest ypu scale the Object in all the axis at the same time. 
  - Mesh: Toggle the view of the vertex and face normals. 
@@ -45,5 +49,3 @@
  - Game Object: There are six primitives available to be created at any time. These are: Cube, Plane, Cylinder, Sphere,
    Cone and Pyramid. These are duplicated, the firsts are generated automatically and have no texture coordinates and the 
    ones marked with FBX will be loaded from FBX files and will have texture coordinates. 
-
- - About: Get the pages where the project is held in GitHub and get more information about the engine.
