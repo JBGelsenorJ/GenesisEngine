@@ -41,12 +41,14 @@ public:
 	uint* indices = nullptr;
 
 	uint normals_buffer;
+	int normals_amount = -1;
 	float* normals;
 
 	uint texture_buffer = -1;
 	uint textureID;
 	GnTexture* texture;
 	float* texcoords = nullptr;
+	uint texcoords_amount = -1;
 	float* colors;
 
 	const char* name;

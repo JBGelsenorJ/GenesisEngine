@@ -170,7 +170,7 @@
     <ClCompile Include="Camera.cpp">
       <Filter>GameObjects &amp; Components</Filter>
     </ClCompile>
-    <ClCompile Include="TimeManagement.cpp">
+    <ClCompile Include="Importer.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
@@ -449,7 +449,7 @@
     <ClInclude Include="Camera.h">
       <Filter>GameObjects &amp; Components</Filter>
     </ClInclude>
-    <ClInclude Include="TimeManagement.h">
+    <ClInclude Include="Importer.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

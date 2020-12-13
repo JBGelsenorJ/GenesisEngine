@@ -10,6 +10,7 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
 #include "ModuleScene.h"
+#include "Importer.h"
 #include "Editor.h"
 
 #include <string>
@@ -58,7 +59,6 @@ public:
 	ModuleScene* scene;
 	Editor* editor;
 	ModuleRenderer3D* renderer3D;
-
 	const char* engine_name;
 
 public:

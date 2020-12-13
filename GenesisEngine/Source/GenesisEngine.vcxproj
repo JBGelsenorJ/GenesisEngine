@@ -57,7 +57,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\Source\Libs;C:\Users\ADMIN\Documents\GitHub\GenesisEngine\GenesisEngine\Source\Libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Javier Belda Gonzále\Documents\GitHub\GenesisEngine\GenesisEngine\Source\Libs;..\Source\Libs;C:\Users\ADMIN\Documents\GitHub\GenesisEngine\GenesisEngine\Source\Libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
       <StructMemberAlignment>Default</StructMemberAlignment>
@@ -66,7 +66,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\ADMIN\Documents\GitHub\GenesisEngine\GenesisEngine\Source\Libs;C:\Users\marcpf5\Documents\GitHub\GenesisEngine\GenesisEngine\Source\Libs;G:\Github\GenesisEngine\GenesisEngine\Source\Libs;C:\Users\silvi\Documents\GitHub\GenesisEngine\GenesisEngine\Source\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\ADMIN\Documents\GitHub\GenesisEngine\GenesisEngine\Source\Libs;C:\Users\Javier Belda Gonzále\Documents\GitHub\GenesisEngine\GenesisEngine\Source\Libs;G:\Github\GenesisEngine\GenesisEngine\Source\Libs;C:\Users\silvi\Documents\GitHub\GenesisEngine\GenesisEngine\Source\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,6 +97,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="FileSystem.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Importer.h" />
     <ClInclude Include="Libs\MathGeoLib\include\Algorithm\Random\LCG.h" />
     <ClInclude Include="Libs\MathGeoLib\include\Geometry\AABB.h" />
     <ClInclude Include="Libs\MathGeoLib\include\Geometry\AABB2D.h" />
@@ -185,7 +186,6 @@
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleScene.h" />
     <ClInclude Include="ModuleWindow.h" />
-    <ClInclude Include="TimeManagement.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
@@ -198,6 +198,7 @@
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glmath.cpp" />
+    <ClCompile Include="Importer.cpp" />
     <ClCompile Include="Libs\ImGui\imgui.cpp" />
     <ClCompile Include="Libs\ImGui\imgui_demo.cpp" />
     <ClCompile Include="Libs\ImGui\imgui_draw.cpp" />
@@ -247,7 +248,6 @@
     <ClCompile Include="ModuleRenderer3D.cpp" />
     <ClCompile Include="ModuleScene.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
-    <ClCompile Include="TimeManagement.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
